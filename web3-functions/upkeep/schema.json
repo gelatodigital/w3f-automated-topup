@@ -1,0 +1,13 @@
+{
+  "web3FunctionVersion": "2.0.0",
+  "runtime": "js-1.0",
+  "memory": 128,
+  "timeout": 30,
+  "userArgs": {
+    "proxy": "string",
+    "forwarder": "string",
+    "amount": "string",
+    "threshold": "string",
+    "targets": "string[]"
+  }
+}
