@@ -4,7 +4,7 @@ import "@nomicfoundation/hardhat-chai-matchers";
 import "@nomiclabs/hardhat-ethers";
 import "@typechain/hardhat";
 import "hardhat-deploy";
-import "./tasks/upkeep";
+import "./tasks/topup";
 import "dotenv";
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY;

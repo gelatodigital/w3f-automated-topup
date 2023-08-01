@@ -32,7 +32,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
   const target = targets.reduce((a, b) => (a.balance < b.balance ? a : b));
 
   if (target.balance >= threshold)
-    return { canExec: false, message: "No upkeep required" };
+    return { canExec: false, message: "No refill required" };
 
   const delta = amount - target.balance;
 

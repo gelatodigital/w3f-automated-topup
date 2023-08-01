@@ -1,16 +1,16 @@
 import { AutomateSDK } from "@gelatonetwork/automate-sdk";
 import { task } from "hardhat/config";
 
-task("upkeep", "Automatically fund wallets/contracts with native tokens")
+task("topup", "Automatically refill wallets/contracts with native tokens")
   .addParam("amount", "desired balance")
-  .addParam("threshold", "balance at which to initiate upkeep")
+  .addParam("threshold", "balance at which to initiate refill")
   .addParam("targets", "list of addresses to fund, separated by commas")
   .setAction(async (args, { ethers, w3f, deployments }) => {
     const amount = BigInt(args.amount);
-    if (!amount) throw new Error("Upkeep: invalid amount");
+    if (!amount) throw new Error("Topup: invalid amount");
 
     const threshold = BigInt(args.threshold);
-    if (!threshold) throw new Error("Upkeep: invalid threshold");
+    if (!threshold) throw new Error("Topup: invalid threshold");
 
     if (amount < threshold)
       throw new Error("verifyUserArgs: require amount >= threshold");
@@ -18,7 +18,7 @@ task("upkeep", "Automatically fund wallets/contracts with native tokens")
     const targets = (args.targets as string).split(" ");
     for (const target of targets) {
       if (!ethers.utils.isAddress(target))
-        throw new Error("Upkeep: invalid target address");
+        throw new Error("Topup: invalid target address");
     }
 
     // get contract deployment
@@ -27,8 +27,8 @@ task("upkeep", "Automatically fund wallets/contracts with native tokens")
     // deploy W3F to IPFS
     console.log("Deploying W3F to IPFS.");
 
-    const upkeepW3f = w3f.get("upkeep");
-    const cid = await upkeepW3f.deploy();
+    const topupW3f = w3f.get("topup");
+    const cid = await topupW3f.deploy();
 
     console.log(`Deployed W3F hash ${cid}.`);
 
@@ -42,7 +42,7 @@ task("upkeep", "Automatically fund wallets/contracts with native tokens")
     const proxy = await automate.getDedicatedMsgSender();
 
     const { taskId, tx } = await automate.createBatchExecTask({
-      name: "Automated Upkeep",
+      name: "Automated Topup",
       web3FunctionHash: cid,
       web3FunctionArgs: {
         proxy: proxy.address,
@@ -56,6 +56,6 @@ task("upkeep", "Automatically fund wallets/contracts with native tokens")
 
     await tx.wait();
     console.log(
-      `Created upkeep task: https://beta.app.gelato.network/task/${taskId}?chainId=${chainId}`
+      `Created topup task: https://beta.app.gelato.network/task/${taskId}?chainId=${chainId}`
     );
   });

@@ -1,7 +1,7 @@
 {
-  "name": "w3f-automated-upkeep",
+  "name": "w3f-automated-topup",
   "version": "1.0.0",
-  "description": "Gelato Web3 Function Automated Upkeep",
+  "description": "Gelato Web3 Function Automated Top-Up",
   "scripts": {
     "build": "yarn install && yarn compile && npx tsc",
     "clean": "yarn hardhat clean && rm -rf dist",
