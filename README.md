@@ -1,6 +1,6 @@
 # Web3 Function Automated Upkeep
 
-This project maintains an addresses (contract or EOA) balance at a desired value and periodically tops it up when below a specified threshold.
+This project maintains an addresses (Smart Contract or EOA) balance at a desired value and periodically tops it up when below a specified threshold.
 Since computation is performed entirely off-chain by a Web3 Function, no contract deployment is necessary leading to gas savings.
 Funds are stored in a user's `dedicatedMsgSender` proxy which funds all upkeep tasks.
 
