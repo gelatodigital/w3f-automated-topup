@@ -1,15 +1,15 @@
-# Web3 Function Automated Upkeep
+# Web3 Function Automated Top-Up
 
 This project maintains an addresses (Smart Contract or EOA) balance at a desired value and periodically tops it up when below a specified threshold.
 Since computation is performed entirely off-chain by a Web3 Function, no contract deployment is necessary leading to gas savings.
-Funds are stored in a user's `dedicatedMsgSender` proxy which funds all upkeep tasks.
+Funds are stored in a user's `dedicatedMsgSender` proxy which funds all toüup tasks.
 
 > **Note**  
-> Whilst no per-user contract deployment is necessary, a [forwarder](https://github.com/gelatodigital/w3f-automated-upkeep/blob/main/contracts/FeeForwarder.sol) contract must be deployed once on each network and is subsequently shared by all upkeep tasks.
+> Whilst no per-user contract deployment is necessary, a [forwarder](https://github.com/gelatodigital/w3f-automated-topup/blob/main/contracts/FeeForwarder.sol) contract must be deployed once on each network and is subsequently shared by all topup tasks.
 
 ## Hardhat Task
-The example implements an [upkeep](https://github.com/gelatodigital/w3f-automated-upkeep/blob/main/tasks/upkeep.ts) hardhat task for deployment from the CLI.  
-Specify a desired `amount` and `threshold` along with a list of `targets` to upkeep (comma-separated).  
+The example implements an [topup](https://github.com/gelatodigital/w3f-automated-topup/blob/main/tasks/toüup.ts) hardhat task for deployment from the CLI.  
+Specify a desired `amount` and `threshold` along with a list of `targets` to topup (comma-separated).  
 [See Quick Start](#quick-start)
 
 ## Quick Start
@@ -33,9 +33,9 @@ Specify a desired `amount` and `threshold` along with a list of `targets` to upk
    ```
    yarn hardhat deploy --network [network]
    ```
-5. Create upkeep task
+5. Create topup task
    ```
-   yarn hardhat upkeep --targets [addresses] --amount [value] --threshold [value] --network [network]
+   yarn hardhat topup --targets [addresses] --amount [value] --threshold [value] --network [network]
    ```
 6. Fund `dedicatedMsgSender` proxy   
    [https://fund-proxy.web.app/](https://fund-proxy.web.app/)
