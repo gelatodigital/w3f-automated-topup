@@ -13,6 +13,10 @@ Specify a desired `amount` and `threshold` along with a list of `targets` to upk
 [See Quick Start](#quick-start)
 
 ## Quick Start
+
+> **Warning**  
+> Contracts are not audited by a third party. Please use at your own discretion.
+
 1. Install dependencies
    ```
    yarn install
