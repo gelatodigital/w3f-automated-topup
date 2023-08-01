@@ -1,5 +1,5 @@
 node_modules
-deployments
+deployments/localhost
 .env
 coverage
 coverage.json

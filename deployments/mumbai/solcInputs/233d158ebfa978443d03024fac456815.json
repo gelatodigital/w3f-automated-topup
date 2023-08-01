@@ -1,0 +1,36 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/FeeForwarder.sol": {
+      "content": "// SPDX-License-Identifier: UNLICENSED\r\npragma solidity 0.8.19;\r\n\r\nimport {IAutomate} from \"./vendor/IAutomate.sol\";\r\n\r\ncontract FeeForwarder {\r\n    IAutomate public automate;\r\n\r\n    constructor(address _automate) {\r\n        automate = IAutomate(_automate);\r\n    }\r\n\r\n    function transfer(address target, uint256 amount) external {\r\n        (uint256 fee,) = automate.getFeeDetails();\r\n        _transfer(automate.gelato(), fee);\r\n\r\n        _transfer(target, amount);\r\n\r\n        uint256 refund = address(this).balance;\r\n        _transfer(msg.sender, refund);\r\n    }\r\n\r\n    function getBalances(\r\n        address[] calldata targets\r\n    ) external view returns (uint256[] memory balances) {\r\n        balances = new uint256[](targets.length);\r\n        \r\n        for (uint256 i = 0; i < targets.length; i++)\r\n            balances[i] = targets[i].balance;\r\n    }\r\n\r\n    function _transfer(address to, uint256 amount) internal {\r\n        (bool success,) = to.call{value: amount}(\"\");\r\n        require(success, \"FeeForwarder._transfer: transfer failed\");\r\n    }\r\n}\r\n"
+    },
+    "contracts/vendor/IAutomate.sol": {
+      "content": "// SPDX-License-Identifier: UNLICENSED\r\npragma solidity 0.8.19;\r\n\r\ninterface IAutomate {\r\n    function getFeeDetails() external view returns (uint256, address);\r\n    function gelato() external view returns (address payable);\r\n}\r\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": ["ast"]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
