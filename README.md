@@ -2,7 +2,7 @@
 
 This project maintains an addresses (Smart Contract or EOA) balance at a desired value and periodically tops it up when below a specified threshold.
 Since computation is performed entirely off-chain by a Web3 Function, no contract deployment is necessary leading to gas savings.
-Funds are stored in a user's `dedicatedMsgSender` proxy which funds all toüup tasks.
+Funds are stored in a user's `dedicatedMsgSender` proxy which funds all topup tasks.
 
 > **Note**  
 > Whilst no per-user contract deployment is necessary, a [forwarder](https://github.com/gelatodigital/w3f-automated-topup/blob/main/contracts/FeeForwarder.sol) contract must be deployed once on each network and is subsequently shared by all topup tasks.
