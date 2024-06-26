@@ -4,7 +4,7 @@ This project maintains an addresses (Smart Contract or EOA) balance at a desired
 Since computation is performed entirely off-chain by a Web3 Function, no contract deployment is necessary leading to gas savings.
 Funds are stored in a user's `dedicatedMsgSender` proxy which funds all topup tasks.
 
-> **Note**  
+> [!NOTE]
 > Whilst no per-user contract deployment is necessary, a [forwarder](https://github.com/gelatodigital/w3f-automated-topup/blob/main/contracts/FeeForwarder.sol) contract must be deployed once on each network and is subsequently shared by all topup tasks.
 
 ## Hardhat Task
@@ -14,7 +14,7 @@ Specify a desired `amount` and `threshold` along with a list of `targets` to top
 
 ## Quick Start
 
-> **Warning**  
+> [!WARNING]
 > Contracts are not audited by a third party. Please use at your own discretion.
 
 1. Install dependencies
